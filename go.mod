@@ -3,6 +3,7 @@ module github.com/ryszhio/goauth
 go 1.24.3
 
 require (
+	github.com/bwmarrin/snowflake v0.3.0
 	github.com/gofiber/fiber/v3 v3.0.0-beta.4
 	github.com/golang-jwt/jwt/v5 v5.2.2
 	golang.org/x/crypto v0.38.0

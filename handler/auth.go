@@ -10,6 +10,7 @@ import (
 	"github.com/gofiber/fiber/v3"
 	"github.com/golang-jwt/jwt/v5"
 	"github.com/ryszhio/goauth/database"
+	"github.com/ryszhio/goauth/internal/generator"
 	"github.com/ryszhio/goauth/model"
 	"golang.org/x/crypto/bcrypt"
 	"gorm.io/gorm"
@@ -113,6 +114,7 @@ func Register(c fiber.Ctx) error {
 	}
 	db := database.DB
 	user := &model.User{
+		ID:            generator.GenerateUserID(),
 		Username:      input.Username,
 		DisplayName:   input.DisplayName,
 		Email:         input.Email,
@@ -140,7 +142,7 @@ func Login(c fiber.Ctx) error {
 		Password string `json:"password"`
 	}
 	type UserData struct {
-		ID       uint   `json:"id"`
+		ID       int64  `json:"id"`
 		Username string `json:"username"`
 		Email    string `json:"email"`
 		Password string `json:"password"`
@@ -185,6 +187,7 @@ func Login(c fiber.Ctx) error {
 	claims := token.Claims.(jwt.MapClaims)
 	claims["username"] = userData.Username
 	claims["user_id"] = userData.ID
+	claims["user_email"] = userData.Email
 	claims["exp"] = time.Now().Add(time.Hour * 72).Unix()
 
 	t, err := token.SignedString([]byte(os.Getenv("SECRET")))
@@ -192,5 +195,5 @@ func Login(c fiber.Ctx) error {
 		return c.SendStatus(fiber.StatusInternalServerError)
 	}
 
-	return c.JSON(fiber.Map{"status": "success", "message": "Success login", "data": t})
+	return c.JSON(fiber.Map{"status": "success", "message": "Successful login", "data": t})
 }
