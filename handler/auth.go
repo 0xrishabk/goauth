@@ -114,7 +114,7 @@ func Register(c fiber.Ctx) error {
 	}
 	db := database.DB
 	user := &model.User{
-		ID:            generator.GenerateUserID(),
+		ID:            generator.GenerateID(),
 		Username:      input.Username,
 		DisplayName:   input.DisplayName,
 		Email:         input.Email,

@@ -23,9 +23,9 @@ func TestJwt(t *testing.T) {
 	fmt.Println(data)
 
 	start := time.Now()
-	generator.InitializeSnowFlakeNode(1)
+	generator.InitializeNode(1)
 	for i := 0; i < 50; i++ {
-		fmt.Println(generator.GenerateUserID())
+		fmt.Println(generator.GenerateID())
 	}
 	fmt.Println("Took:", time.Since(start).Nanoseconds())
 }

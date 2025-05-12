@@ -2,17 +2,17 @@ package generator
 
 import "github.com/bwmarrin/snowflake"
 
-var n *snowflake.Node
+var node *snowflake.Node
 
-func InitializeSnowFlakeNode(node int64) {
+func InitializeNode(n int64) {
 	var err error
 	snowflake.Epoch = 1747044786000
-	n, err = snowflake.NewNode(node)
+	node, err = snowflake.NewNode(n)
 	if err != nil {
 		panic(err)
 	}
 }
 
-func GenerateUserID() int64 {
-	return n.Generate().Int64()
+func GenerateID() int64 {
+	return node.Generate().Int64()
 }
