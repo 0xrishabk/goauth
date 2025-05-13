@@ -6,10 +6,20 @@ This backend app is my first project I did using **GoFiber**(A backend framework
 - PostgreSQL
 
 ## Starting the backend server
+**Setting up files:**
 ```
     git clone https://github.com/ryszhio/goauth.git
     cd goauth
     mv example.env .env  # Edit your env file to setup database. (Make sure to have postgres and access to database.)
+```
+**Running Server**
+```
+    go run main.go
+```
+OR
+```
+    go build .
+    ./goauth
 ```
 
 ## End Points
