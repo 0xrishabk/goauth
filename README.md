@@ -26,6 +26,7 @@ This backend app is my first project I did using **GoFiber**(A backend framework
     GET /
     POST /
 ```
+Just returns simple message with goauth working..
 
 ## How to send request ?
 ### 1. Register
