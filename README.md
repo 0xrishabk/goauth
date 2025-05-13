@@ -44,7 +44,7 @@ This backend app is my first project I did using **GoFiber**(A backend framework
 ```
 Fill the fields properly & Send Request.
 
-`Status Response:`
+### Status Response:
 **1. 400 - Bad Request**
 - Invalid JSON request
 - Invalid email
@@ -75,7 +75,7 @@ Fill the fields properly & Send Request.
 *Identity field should either contain email or username*
 Fill the field properly.
 
-`Status Response:`
+### Status Response:
 **1. 400 - Bad Request**
 - Invalid JSON request
 
