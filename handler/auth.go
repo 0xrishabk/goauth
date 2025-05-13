@@ -3,8 +3,10 @@ package handler
 import (
 	"encoding/json"
 	"errors"
+	"fmt"
 	"net/mail"
 	"os"
+	"regexp"
 	"time"
 
 	"github.com/gofiber/fiber/v3"
@@ -64,9 +66,14 @@ func getUserByUsername(u string) (*model.User, error) {
 	return &user, nil
 }
 
-func isEmail(email string) bool {
-	_, err := mail.ParseAddress(email)
+func isEmail(e string) bool {
+	_, err := mail.ParseAddress(e)
 	return err == nil
+}
+
+func isUser(u string) bool {
+	re := regexp.MustCompile(`^[a-zA-Z0-9._-]{3,30}$`)
+	return re.Match([]byte(u))
 }
 
 func Register(c fiber.Ctx) error {
@@ -86,11 +93,16 @@ func Register(c fiber.Ctx) error {
 
 	input := new(RegisterInput)
 	if err := json.Unmarshal(c.Body(), &input); err != nil {
-		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"status": "error", "message": "Error on login request", "data": err})
+		fmt.Println(err.Error())
+		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"status": "error", "message": "Error on register request", "data": err})
 	}
 
 	if !isEmail(input.Email) {
 		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"status": "error", "message": "Enter a valid email", "data": nil})
+	}
+
+	if !isUser(input.Username) {
+		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"status": "error", "message": "Username must be 3-30 characters & can only contain -, _, ., alphabets, numbers"})
 	}
 
 	exists, err := existsByEmail(input.Email)
