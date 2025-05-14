@@ -1,11 +1,20 @@
 package generator
 
-import "github.com/bwmarrin/snowflake"
+import (
+	"os"
+	"strconv"
+
+	"github.com/bwmarrin/snowflake"
+)
 
 var node *snowflake.Node
 
-func InitializeNode(n int64) {
-	var err error
+func InitializeNode() {
+	sID := os.Getenv("SERVER_ID")
+	n, err := strconv.ParseInt(sID, 10, 64)
+	if err != nil {
+		panic(err)
+	}
 	snowflake.Epoch = 1747044786000
 	node, err = snowflake.NewNode(n)
 	if err != nil {

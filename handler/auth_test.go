@@ -23,7 +23,7 @@ func TestJwt(t *testing.T) {
 	fmt.Println(data)
 
 	start := time.Now()
-	generator.InitializeNode(1)
+	generator.InitializeNode()
 	for i := 0; i < 50; i++ {
 		fmt.Println(generator.GenerateID())
 	}
