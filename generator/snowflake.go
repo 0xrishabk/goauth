@@ -13,7 +13,7 @@ func InitializeNode() {
 	sID := os.Getenv("SERVER_ID")
 	n, err := strconv.ParseInt(sID, 10, 64)
 	if err != nil {
-		panic(err)
+		panic("Error while converting server id")
 	}
 	snowflake.Epoch = 1747044786000
 	node, err = snowflake.NewNode(n)

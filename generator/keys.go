@@ -10,7 +10,7 @@ import (
 	"os"
 )
 
-func GenerateKeys() error {
+func ConfigureKeys() error {
 	if _, err := os.Stat("keys/private_key.pem"); os.IsNotExist(err) {
 		curve := elliptic.P256()
 		privateKey, err := ecdsa.GenerateKey(curve, rand.Reader)

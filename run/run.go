@@ -12,12 +12,12 @@ func InitializeApp() error {
 	// Load Environment Files
 	godotenv.Load(".env")
 	// Generate Keys
-	err := generator.GenerateKeys()
+	err := generator.ConfigureKeys()
 	if err != nil {
 		return err
 	}
 	// Initialize Node number for the snowflake generator
-	generator.InitializeNode(1)
+	generator.InitializeNode()
 	// Establish connection to our database.
 	database.ConnectDB()
 	// Initialize fiber app
