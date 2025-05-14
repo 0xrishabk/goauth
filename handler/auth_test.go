@@ -6,7 +6,7 @@ import (
 	"time"
 
 	"github.com/golang-jwt/jwt/v5"
-	"github.com/ryszhio/goauth/internal/generator"
+	"github.com/ryszhio/goauth/generator"
 )
 
 func TestJwt(t *testing.T) {

@@ -4,14 +4,18 @@ import (
 	"github.com/gofiber/fiber/v3"
 	"github.com/joho/godotenv"
 	"github.com/ryszhio/goauth/database"
-	"github.com/ryszhio/goauth/internal/generator"
+	"github.com/ryszhio/goauth/generator"
 	"github.com/ryszhio/goauth/router"
 )
 
 func InitializeApp() error {
 	// Load Environment Files
 	godotenv.Load(".env")
-
+	// Generate Keys
+	err := generator.GenerateKeys()
+	if err != nil {
+		return err
+	}
 	// Initialize Node number for the snowflake generator
 	generator.InitializeNode(1)
 	// Establish connection to our database.
