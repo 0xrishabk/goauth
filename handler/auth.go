@@ -5,14 +5,12 @@ import (
 	"errors"
 	"fmt"
 	"net/mail"
-	"os"
 	"regexp"
-	"time"
 
 	"github.com/gofiber/fiber/v3"
-	"github.com/golang-jwt/jwt/v5"
 	"github.com/ryszhio/goauth/database"
-	"github.com/ryszhio/goauth/generator"
+	"github.com/ryszhio/goauth/internal/auth"
+	"github.com/ryszhio/goauth/internal/generator"
 	"github.com/ryszhio/goauth/model"
 	"golang.org/x/crypto/bcrypt"
 	"gorm.io/gorm"
@@ -194,15 +192,20 @@ func Login(c fiber.Ctx) error {
 		return c.Status(fiber.StatusUnauthorized).JSON(fiber.Map{"status": "error", "message": "Invalid identity or password", "data": err})
 	}
 
-	token := jwt.New(jwt.SigningMethodHS256)
+	/* 	token := jwt.New(jwt.SigningMethodHS256)
 
-	claims := token.Claims.(jwt.MapClaims)
-	claims["username"] = userData.Username
-	claims["user_id"] = userData.ID
-	claims["user_email"] = userData.Email
-	claims["exp"] = time.Now().Add(time.Hour * 72).Unix()
+	   	claims := token.Claims.(jwt.MapClaims)
+	   	claims["username"] = userData.Username
+	   	claims["user_id"] = userData.ID
+	   	claims["user_email"] = userData.Email
+	   	claims["exp"] = time.Now().Add(time.Hour * 72).Unix()
 
-	t, err := token.SignedString([]byte(os.Getenv("SECRET")))
+	   	t, err := token.SignedString([]byte(os.Getenv("SECRET")))
+	   	if err != nil {
+	   		return c.SendStatus(fiber.StatusInternalServerError)
+	   	}
+	*/
+	t, err := auth.SignJWT(userModel)
 	if err != nil {
 		return c.SendStatus(fiber.StatusInternalServerError)
 	}

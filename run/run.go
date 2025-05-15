@@ -4,7 +4,8 @@ import (
 	"github.com/gofiber/fiber/v3"
 	"github.com/joho/godotenv"
 	"github.com/ryszhio/goauth/database"
-	"github.com/ryszhio/goauth/generator"
+	"github.com/ryszhio/goauth/internal/generator"
+	"github.com/ryszhio/goauth/internal/keys"
 	"github.com/ryszhio/goauth/router"
 )
 
@@ -12,7 +13,7 @@ func InitializeApp() error {
 	// Load Environment Files
 	godotenv.Load(".env")
 	// Generate Keys
-	err := generator.ConfigureKeys()
+	err := keys.ConfigureKeys()
 	if err != nil {
 		return err
 	}
@@ -31,7 +32,7 @@ func InitializeApp() error {
 	app.Post("/", greetingResponse)
 
 	// Serve the application
-	app.Listen(":3000", fiber.ListenConfig{EnablePrefork: false})
+	app.Listen("127.0.0.1:5940", fiber.ListenConfig{EnablePrefork: false})
 
 	return nil
 }
