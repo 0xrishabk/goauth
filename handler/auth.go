@@ -8,6 +8,7 @@ import (
 	"regexp"
 
 	"github.com/gofiber/fiber/v3"
+	"github.com/golang-jwt/jwt/v5"
 	"github.com/ryszhio/goauth/database"
 	"github.com/ryszhio/goauth/internal/auth"
 	"github.com/ryszhio/goauth/internal/generator"
@@ -211,4 +212,40 @@ func Login(c fiber.Ctx) error {
 	}
 
 	return c.JSON(fiber.Map{"status": "success", "message": "Successful login", "data": t})
+}
+
+func VerifyAuth(c fiber.Ctx) error {
+	type Input struct {
+		Token string `json:"token"`
+	}
+	input := new(Input)
+	if err := json.Unmarshal(c.Body(), &input); err != nil {
+		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{"status": "error", "message": "Invalid json request.", "data": err})
+	}
+
+	t, err := auth.VerifyJWT(input.Token)
+	if err != nil {
+		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{"status": "error", "message": "Can't verify session token", "data": err})
+	}
+
+	claims, ok := t.Claims.(jwt.MapClaims)
+	if !ok {
+		return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{"status": "error", "message": "Can't verify claims", "data": err})
+	}
+
+	type JWTClaims struct {
+		ID         float64 `json:"id"`
+		Username   string  `json:"username"`
+		IssuedTime float64 `json:"iat"`
+		ExpiryTime float64 `json:"exp"`
+	}
+
+	jwtClaims := &JWTClaims{
+		ID:         claims["id"].(float64),
+		Username:   claims["username"].(string),
+		IssuedTime: claims["iat"].(float64),
+		ExpiryTime: claims["exp"].(float64),
+	}
+
+	return c.JSON(fiber.Map{"status": "success", "message": "Verified The Token", "data": jwtClaims})
 }

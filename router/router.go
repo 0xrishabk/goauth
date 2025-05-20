@@ -16,4 +16,5 @@ func SetupRoutes(app *fiber.App) {
 	}))
 	auth.Post("/login", handler.Login)
 	auth.Post("/register", handler.Register)
+	auth.Post("/verify-auth", handler.VerifyAuth)
 }

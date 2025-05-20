@@ -1,6 +1,8 @@
 package run
 
 import (
+	"os"
+
 	"github.com/gofiber/fiber/v3"
 	"github.com/joho/godotenv"
 	"github.com/ryszhio/goauth/database"
@@ -32,7 +34,7 @@ func InitializeApp() error {
 	app.Post("/", greetingResponse)
 
 	// Serve the application
-	app.Listen("127.0.0.1:5940", fiber.ListenConfig{EnablePrefork: false})
+	app.Listen(":"+os.Getenv("PORT"), fiber.ListenConfig{EnablePrefork: false})
 
 	return nil
 }
