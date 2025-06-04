@@ -1,5 +1,5 @@
 # GoAuth - An authentication app which handles register & login via RESTful API
-This backend app is my first project I made using **GoFiber**(A backend framework for Go).
+I made this project while learning golang.This backend app is my first project I made using **GoFiber**(A backend framework for Go).
 
 ## Requirement
 - Go
