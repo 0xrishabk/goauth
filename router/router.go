@@ -1,3 +1,4 @@
+// Package router to setup routers
 package router
 
 import (
