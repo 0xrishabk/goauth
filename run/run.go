@@ -1,3 +1,4 @@
+// Package run holds function to run the app itself
 package run
 
 import (

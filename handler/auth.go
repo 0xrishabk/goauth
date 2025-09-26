@@ -1,3 +1,4 @@
+// Package handler is used to handle the request on the register routes
 package handler
 
 import (

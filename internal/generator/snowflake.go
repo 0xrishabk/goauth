@@ -1,3 +1,4 @@
+// Package generator is used for snowflake purpose
 package generator
 
 import (

@@ -1,4 +1,4 @@
-// Package router to setup routers
+// Package router is used to configure routes
 package router
 
 import (

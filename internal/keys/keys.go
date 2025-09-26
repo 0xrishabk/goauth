@@ -1,3 +1,4 @@
+// Package keys is used to configure private and public keys for jwt
 package keys
 
 import (
@@ -27,7 +28,7 @@ func ConfigureKeys() error {
 			return err
 		}
 		PublicKey = &PrivateKey.PublicKey
-		os.Mkdir("keys", 0755)
+		os.Mkdir("keys", 0o755)
 		err = savePrivateKey(PrivateKey)
 		if err != nil {
 			return err

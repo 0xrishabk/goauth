@@ -1,3 +1,4 @@
+// Package auth is used to sign and unsign jwt
 package auth
 
 import (

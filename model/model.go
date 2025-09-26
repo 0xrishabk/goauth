@@ -1,4 +1,4 @@
-// Package model
+// Package model got schema defined for GORM and also json
 package model
 
 import "time"
