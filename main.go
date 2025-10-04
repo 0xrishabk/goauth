@@ -4,7 +4,7 @@ import (
 	"log"
 	"os"
 
-	"github.com/ryszhio/goauth/run"
+	"github.com/0xrishabk/goauth/run"
 )
 
 func main() {

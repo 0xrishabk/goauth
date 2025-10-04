@@ -6,8 +6,8 @@ import (
 	"time"
 
 	"github.com/golang-jwt/jwt/v5"
-	"github.com/ryszhio/goauth/internal/keys"
-	"github.com/ryszhio/goauth/model"
+	"github.com/0xrishabk/goauth/internal/keys"
+	"github.com/0xrishabk/goauth/model"
 )
 
 func SignJWT(u *model.User) (string, error) {

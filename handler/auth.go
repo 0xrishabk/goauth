@@ -10,10 +10,10 @@ import (
 
 	"github.com/gofiber/fiber/v3"
 	"github.com/golang-jwt/jwt/v5"
-	"github.com/ryszhio/goauth/database"
-	"github.com/ryszhio/goauth/internal/auth"
-	"github.com/ryszhio/goauth/internal/generator"
-	"github.com/ryszhio/goauth/model"
+	"github.com/0xrishabk/goauth/database"
+	"github.com/0xrishabk/goauth/internal/auth"
+	"github.com/0xrishabk/goauth/internal/generator"
+	"github.com/0xrishabk/goauth/model"
 	"golang.org/x/crypto/bcrypt"
 	"gorm.io/gorm"
 )

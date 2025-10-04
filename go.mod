@@ -1,4 +1,4 @@
-module github.com/ryszhio/goauth
+module github.com/0xrishabk/goauth
 
 go 1.24.3
 

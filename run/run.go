@@ -6,10 +6,10 @@ import (
 
 	"github.com/gofiber/fiber/v3"
 	"github.com/joho/godotenv"
-	"github.com/ryszhio/goauth/database"
-	"github.com/ryszhio/goauth/internal/generator"
-	"github.com/ryszhio/goauth/internal/keys"
-	"github.com/ryszhio/goauth/router"
+	"github.com/0xrishabk/goauth/database"
+	"github.com/0xrishabk/goauth/internal/generator"
+	"github.com/0xrishabk/goauth/internal/keys"
+	"github.com/0xrishabk/goauth/router"
 )
 
 func InitializeApp() error {
@@ -41,5 +41,5 @@ func InitializeApp() error {
 }
 
 func greetingResponse(c fiber.Ctx) error {
-	return c.SendString("goauth is running\nMade with ❤️ by ryszhio.")
+	return c.SendString("goauth is running\nMade with ❤️ by 0xrishabk.")
 }
